@@ -1,96 +1,32 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<time.h>
-#include<ctype.h>
-#define total_students 39
+#include "atm.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
-typedef struct
-{
-  long long id;
-  char name[50];
-  long pin;
-  long balance;
-}data;
-
-data students[total_students];
-
-void loadstudents()
-{
-    FILE *fp = fopen("info.txt", "r");
-
-    if(fp == NULL)
-    {
-        printf("Error loading data.\n");
-        exit(1);
-    }
-
-    for(int i = 0; i < total_students; i++)
-    {
-        char line[200];
-        if(fgets(line, sizeof(line), fp) != NULL)
-        {
-            sscanf(line, "%lld|%49[^|]|%ld|%ld", &students[i].id, students[i].name, &students[i].pin, &students[i].balance);
-        }
-    }
-    fclose(fp);
-}
-void savestudents()
-{
-    FILE *fp = fopen("info.txt", "w");
-    if(fp == NULL)
-    {
-        printf("Error saving data.\n");
-        exit(1);
-    }
-
-    for(int i = 0; i < total_students; i++)
-    {
-        fprintf(fp, "%lld|%s|%ld|%ld\n", students[i].id, students[i].name, students[i].pin, students[i].balance);
-    }
-    fclose(fp);
-}
-void transact(int index, int amount, char mode)
-{
-    FILE *fp = fopen("transactions.txt", "a");
-    if(!fp)
-    {
-        printf("No transactions found.\n");
-    }
-
-    time_t t = time(NULL);
-    struct tm tm_ptr = *localtime(&t);
-
-    char action[100];
-    char sign;
-
-    switch(mode)
-    {
-        case 'w':
-            strcpy(action, "Withdraw");
-            sign = '-';
-            break;
-        case 'd':
-            strcpy(action, "Deposit");
-            sign = '+';
-            break;
-        case 'i':
-            strcpy(action, "Inflow");
-            sign = '+';
-            break;
-        case 'o':
-            strcpy(action, "Outflow");
-            sign = '-';
-            break;
-    }
-    fprintf(fp, "%lld|%02d:%02d|%s|%d%c\n", students[index].id, tm_ptr.tm_hour, tm_ptr.tm_min, action, amount, sign);
-    fclose(fp);
-}
 void atmheader()
 {
     printf("====================================\n");
     printf("           CSE115 ATM                 \n");
     printf("====================================\n\n");
+}
+int exitop()
+{
+    int nav;
+    while(1)
+    {
+        nav = checknum("\nPress 1 to go back or 0 to quit: ");
+        if(nav == 1 || nav ==0)
+        {
+            return nav;
+            break;
+        }
+        else
+        {
+            printf("\nInvalid input. Try Again.");
+            continue;
+        }
+    }
 }
 long long checknum(char *prompt)
 {
@@ -112,7 +48,8 @@ long long checknum(char *prompt)
         return value;
     }
 }
-long long login(long long *id, long *pin, int *index, int *success)
+
+void login(long long *id, long *pin, int *index, int *success)
 {
     long long enteredid;
     long enteredpin;
@@ -166,12 +103,65 @@ long long login(long long *id, long *pin, int *index, int *success)
     *pin = enteredpin;
     *index = foundindex;
 }
+void transact(int index, int amount, char mode)
+{
+    FILE *fp = fopen("transactions.txt", "a");
+    if(!fp)
+    {
+        printf("No transactions found.\n");
+    }
+
+    time_t t = time(NULL);
+    struct tm tm_ptr = *localtime(&t);
+
+    char action[100];
+    char sign;
+
+    switch(mode)
+    {
+        case 'w':
+            strcpy(action, "Withdraw");
+            sign = '-';
+            break;
+        case 'd':
+            strcpy(action, "Deposit");
+            sign = '+';
+            break;
+        case 'i':
+            strcpy(action, "Inflow");
+            sign = '+';
+            break;
+        case 'o':
+            strcpy(action, "Outflow");
+            sign = '-';
+            break;
+        case 'b':
+            strcpy(action, "Cashback");
+            sign = '+';
+            break;
+    }
+    fprintf(fp, "%lld|%02d:%02d|%s|%d%c\n", students[index].id, tm_ptr.tm_hour, tm_ptr.tm_min, action, amount, sign);
+    fclose(fp);
+}
+void offers(int op)
+{
+    switch(op)
+    {
+        case 1:
+            printf("\nGet 5%% cashback with our platinum debit card!");
+            break;
+        case 2:
+            printf("\nWithdraw 2000+ and get 20 taka cashback!");
+            break;
+    }
+}
+
 int options()
 {
     while(1)
     {
-        int op = checknum("\n1. Check Balance\n2. Withdraw\n3. Deposit\n4. Transfer\n5. Mini Statement\n6. Change Pin\n7. Log Out\nEnter your selection: ");
-        if(op == 1 || op == 2 || op == 3 || op == 4 || op == 5 || op == 6 || op == 7)
+        int op = checknum("\n1. Check Balance\n2. Withdraw\n3. Deposit\n4. Transfer\n5. Mini Statement\n6. Change Pin\n7. Card Upgrade\n8. Log Out\nEnter your selection: ");
+        if(op == 1 || op == 2 || op == 3 || op == 4 || op == 5 || op == 6 || op == 7 || op == 8)
         {
             return op;
             break;
@@ -183,28 +173,10 @@ int options()
         }
     }
 }
-int exitop()
+int accinfo(int index)
 {
     int nav;
-    while(1)
-    {
-        nav = checknum("\nPress 1 to go back or 0 to quit: ");
-        if(nav == 1 || nav ==0)
-        {
-            return nav;
-            break;
-        }
-        else
-        {
-            printf("\nInvalid input. Try Again.");
-            continue;
-        }
-    }
-}
-int balance(int index)
-{
-    int nav;
-    printf("\nAccount number: %lld\nAccount Name: %s\nAvailable Balance: %ld Tk", students[index].id, students[index].name, students[index].balance);
+    printf("\nAccount number: %lld\nAccount Name: %s\nCard Type: %s\nAvailable Balance: %ld Tk", students[index].id, students[index].name, students[index].card, students[index].balance);
     nav = exitop();
     return nav;
 }
@@ -250,8 +222,14 @@ int withdraw(int index)
         {
             students[index].balance -= input;
             transact(index, input, 'w');
-            savestudents();
             printf("\nSuccess! Your account has been debited by %ld Tk", input);
+            if(input >= 2000)
+            {
+                students[index].balance += 20;
+                transact(index, 20, 'b');
+                printf("\nYou got 20 taka cashback!");
+            }
+            savestudents();
             nav = exitop();
             break;
         }
@@ -321,31 +299,43 @@ int transfer(int index)
         break;
     }
 }
-int logout()
+int statement(int index)
 {
-    char confirm[50];
-    while(1)
+    int nav, count = 0;
+    FILE *fp = fopen("transactions.txt", "r");
+    if(!fp)
     {
-        printf("\nAre you sure you want to log out? (y/n): ");
-        gets(confirm);
-        if(strcmp(confirm, "y") == 0)
+        printf("error");
+    }
+    char line[100];
+    printf("\nMINI-STATEMENT\tID: %lld\n", students[index].id);
+    printf("\nTime\tType\t      Amount");
+    printf("\n----------------------------\n");
+
+    while(fgets(line, sizeof(line), fp) != NULL)
+    {
+        long long id;
+        char time[6], type[20];
+        char sign;
+        int amount;
+
+        sscanf(line, "%lld|%5[^|]|%19[^|]|%d%c", &id, time, type, &amount, &sign);
+
+        if(id == students[index].id)
         {
-            printf("\nLogging out...\n");
-            return 0;
-            break;
-        }
-        else if(strcmp(confirm, "n") == 0)
-        {
-            printf("\nProcess Terminated.");
-            return 1;
-            break;
-        }
-        else
-        {
-            printf("Invalid input. Try again.");
-            continue;
+            printf("%s\t%-9s\t%d%c\n", time, type, amount, sign);
+            count++;
         }
     }
+    if(count == 0)
+    {
+        printf("\nNo recent transactions.\n");
+    }
+    printf("----------------------------");
+    printf("\nAvailable Balance:\tTk.%ld", students[index].balance);
+    printf("\nThank You!\n");
+    nav = exitop();
+    return nav;
 }
 int changepin(int index)
 {
@@ -396,105 +386,51 @@ int changepin(int index)
         }
     }
 }
-int statement(int index)
+int upgrade(int index)
 {
-    int nav, count = 0;
-    FILE *fp = fopen("transactions.txt", "r");
-    if(!fp)
-    {
-        printf("error");
-    }
-    char line[100];
-    printf("\nMINI-STATEMENT\tID: %lld\n", students[index].id);
-    printf("\nTime\tType\t      Amount");
-    printf("\n----------------------------\n");
-
-    while(fgets(line, sizeof(line), fp) != NULL)
-    {
-        long long id;
-        char time[6], type[20];
-        char sign;
-        int amount;
-
-        sscanf(line, "%lld|%5[^|]|%19[^|]|%d%c", &id, time, type, &amount, &sign);
-
-        if(id == students[index].id)
-        {
-            printf("%s\t%-9s\t%d%c\n", time, type, amount, sign);
-            count++;
-        }
-    }
-    if(count == 0)
-    {
-        printf("\nNo recent transactions.\n");
-    }
-    printf("----------------------------");
-    printf("\nAvailable Balance:\tTk.%ld", students[index].balance);
-    printf("\nThank You!\n");
-    nav = exitop();
-    return nav;
-}
-void offers(int op)
-{
-    switch(op)
-    {
-        case 1:
-            printf("\nGet 5%% cashback with our platinum debit card!");
-            break;
-        case 2:
-            printf("\nWithdraw 2000+ and get 20 taka cashback!");
-            break;
-    }
-}
-int main()
-{
-    srand(time(0));
-    loadstudents();
-    atmheader();
-
-    long long id;
-    long pin;
-    int index, select, success, navigate;
-
     while(1)
     {
-        login(&id, &pin, &index, &success);
-        while(success != 0)
+        printf("\n\033[1mCurrent Plan: \033[0m");
+        printf("%s\n", students[index].card);
+        printf("\033[1mAvailable Offers: \033[0m\n");
+        printf("\n\033[1mStandard: \033[0m\n");
+        printf("1. Visa Classic\n");
+        printf("2. Mastarcard Standard\n");
+        printf("3. Unionpay Classic\n");
+        printf("\n\033[1mPremium: \033[0m\n");
+        printf("4. Visa Platinum\n");
+        printf("5. Visa Signature\n");
+        printf("6. Visa Infinite\n");
+        printf("\n\033[1mExclusive: \033[0m\n");
+        printf("7. Mastercard World\n");
+        printf("8. American Express Gold\n");
+        printf("9. American Express Platinum\n");
+        break;
+    }
+}
+int logout()
+{
+    char confirm[50];
+    while(1)
+    {
+        printf("\nAre you sure you want to log out? (y/n): ");
+        gets(confirm);
+        if(strcmp(confirm, "y") == 0)
         {
-            int offerindex = (rand() % 2) + 1;
-            int op = options();
-            switch(op)
-            {
-                case 1:
-                    navigate = balance(index);
-                    break;
-                case 2:
-                    navigate = withdraw(index);
-                    break;
-                case 3:
-                    navigate = deposit(index);
-                    break;
-                case 4:
-                    navigate = transfer(index);
-                    break;
-                case 5:
-                    navigate = statement(index);
-                    break;
-                case 6:
-                    navigate = changepin(index);
-                    break;
-                case 7:
-                    navigate = logout();
-                    break;
-            }
-            if(navigate == 0)
-                break;
-            else
-            {
-                offers(offerindex);
-                continue;
-            }
+            printf("\nLogging out...\n");
+            return 0;
+            break;
+        }
+        else if(strcmp(confirm, "n") == 0)
+        {
+            printf("\nProcess Terminated.");
+            return 1;
+            break;
+        }
+        else
+        {
+            printf("Invalid input. Try again.");
+            continue;
         }
     }
 }
-
