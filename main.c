@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "students.h"
+#include "accounts.h"
 #include "atm.h"
 
 int main()
 {
     srand(time(0));
-    loadstudents();
+    load();
     atmheader();
 
     long long id;
@@ -44,15 +44,23 @@ int main()
                     navigate = changepin(index);
                     break;
                 case 7:
-                    navigate = upgrade(index);
+                    navigate = more(index);
                     break;
                 case 8:
                     navigate = logout();
                     break;
+                case 9:
+                    return navigate = 0;
+                    break;
             }
 
-            if(navigate == 0) break;
-
+            if(navigate == 0)
+            {
+                printf("\nHave a nice day!");
+                exit(1);
+            }
+            if(navigate == -1)
+                break;
             offers(offerindex);
         }
     }

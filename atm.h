@@ -1,6 +1,6 @@
 #ifndef ATM_H_INCLUDED
 #define ATM_H_INCLUDED
-#include "students.h"
+#include "accounts.h"
 
 void atmheader();
 int exitop();
@@ -17,7 +17,7 @@ int withdraw(int index);
 int transfer(int index);
 int statement(int index);
 int changepin(int index);
-int upgrade(int index);
+int more(int index);
 int logout();
 
 #endif

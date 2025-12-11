@@ -1,26 +1,29 @@
 # depslib dependency file v1.0
-1764611595 source:c:\users\kazmi\desktop\project\atm simulation\main.c
+1765443808 source:c:\users\kazmi\desktop\project\atm simulation\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
-	"students.h"
+	"accounts.h"
 	"atm.h"
 
-1764611485 c:\users\kazmi\desktop\project\atm simulation\students.h
+1765436073 c:\users\kazmi\desktop\project\atm simulation\students.h
 	<stdio.h>
 
-1764611513 c:\users\kazmi\desktop\project\atm simulation\atm.h
-	"students.h"
+1765444194 c:\users\kazmi\desktop\project\atm simulation\atm.h
+	"accounts.h"
 
-1764611595 source:c:\users\kazmi\desktop\project\atm simulation\atm.c
+1765444154 source:c:\users\kazmi\desktop\project\atm simulation\atm.c
 	"atm.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 
-1764611498 source:c:\users\kazmi\desktop\project\atm simulation\students.c
+1765436076 source:c:\users\kazmi\desktop\project\atm simulation\students.c
 	"students.h"
 	<stdlib.h>
 	<string.h>
+
+1765443662 c:\users\kazmi\desktop\project\atm simulation\accounts.h
+	<stdio.h>
 

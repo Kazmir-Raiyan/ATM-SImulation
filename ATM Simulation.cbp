@@ -31,23 +31,19 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="accounts.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="accounts.h" />
 		<Unit filename="atm.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="atm.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="atm.h" />
+		<Unit filename="info.txt" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="students.c">
-			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="students.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="transactions.txt" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

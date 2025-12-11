@@ -1,39 +1,39 @@
-2534113042|Nusrat Arovi Neha|3042|5000|Visa Classic
-1921085042|Mir Bayazid Protik|5042|5000|Visa Classic
-2532646042|Tazin Ahmed|6042|5000|Visa Classic
-2531621042|Miratul Ferdous Adrita|1042|5000|Visa Classic
-2534533642|Aarhaam Aaqib|3642|5000|Visa Classic
-2532631042|Rayhan Bin Mahmood Samar|1042|5000|Visa Classic
-2531283042|Nayeer Abrar Chowdhury|3042|5000|Visa Classic
-2532975042|Siam Shahariya Polash|5042|5000|Visa Classic
-2533750642|Khandaker Zahin Hossain|642|5000|Visa Classic
-2531390642|Maruf|642|5000|Visa Classic
-2534574042|Riaz Ahmed|4042|5000|Visa Classic
-2534676642|Syed Ragib Ali Hasan|6642|5000|Visa Classic
-2534453042|Md Soaib Sultan|3042|5000|Visa Classic
-2531498042|Adnan Mahmud|8042|5000|Visa Classic
-2533390042|MD Mahadi Hasan Tasin|42|5000|Visa Classic
-2534668042|Kazi Md Tahsinul Haque|8042|5000|Visa Classic
-2534493642|Jawhara Bint Zamir|3642|5000|Visa Classic
-2514559403|Esha Moni|9403|5000|Visa Classic
-2531111042|Adnan Bin Rahman|1042|5000|Visa Classic
-2534013642|MD Abdul Kader|3642|5000|Visa Classic
-2533019042|Kazmir Raiyan|9042|5000|Visa Classic
-2531032042|Mohammad Montakimul Islam|2042|5000|Visa Classic
-2534248042|Jadid Jannat|8042|5000|Visa Classic
-2532792642|Kazi Afrin Esheka|2642|5000|Visa Classic
-2534165042|Nabela Jarin Mim|5042|5000|Visa Classic
-2532880642|Tamanna Rahman|642|5000|Visa Classic
-2531154042|Arnob Barua|4042|5000|Visa Classic
-2532463042|Tasnim Jareen Al Vi|3042|5000|Visa Classic
-2532685642|Orindom Sarker|5642|5000|Visa Classic
-2534630042|Tanjika Tabassum Anha|42|5000|Visa Classic
-2532313042|Noshin Tabassum Raisa|3042|5000|Visa Classic
-2532044642|Md Zulgar Nain|4642|5000|Visa Classic
-2532609642|Muhammad Raihan Ul Haque|9642|5000|Visa Classic
-2532809642|Tahia Mahzabin|9642|5000|Visa Classic
-2532871042|Omar|1042|5000|Visa Classic
-2531649042|Adnan Sami Amob|9042|5000|Visa Classic
-2533492042|Monaorul Islam|2042|5000|Visa Classic
-2532746042|Sumaiya Karim Ilma|6042|5000|Visa Classic
-2021186642|Shiekh Muhammad Wali Ullah|6642|10000|Visa Classic
+2534113042	Nusrat Arovi Neha	3042	5000
+1921085042	Mir Bayazid Protik	5042	5000
+2532646042	Tazin Ahmed	6042	5000
+2531621042	Miratul Ferdous Adrita	1042	5000
+2534533642	Aarhaam Aaqib	3642	5000
+2532631042	Rayhan Bin Mahmood Samar	1042	5000
+2531283042	Nayeer Abrar Chowdhury	3042	5000
+2532975042	Siam Shahariya Polash	5042	5000
+2533750642	Khandaker Zahin Hossain	642	5000
+2531390642	Maruf	642	5000
+2534574042	Riaz Ahmed	4042	5000
+2534676642	Syed Ragib Ali Hasan	6642	5000
+2534453042	Md Soaib Sultan	3042	5000
+2531498042	Adnan Mahmud	8042	5000
+2533390042	MD Mahadi Hasan Tasin	42	5000
+2534668042	Kazi Md Tahsinul Haque	8042	5000
+2534493642	Jawhara Bint Zamir	3642	5000
+2514559403	Esha Moni	9403	5000
+2531111042	Adnan Bin Rahman	1042	5000
+2534013642	MD Abdul Kader	3642	5000
+2533019042	Kazmir Raiyan	9042	5000
+2531032042	Mohammad Montakimul Islam	2042	5000
+2534248042	Jadid Jannat	8042	5000
+2532792642	Kazi Afrin Esheka	2642	5000
+2534165042	Nabela Jarin Mim	5042	5000
+2532880642	Tamanna Rahman	642	5000
+2531154042	Arnob Barua	4042	5000
+2532463042	Tasnim Jareen Al Vi	3042	5000
+2532685642	Orindom Sarker	5642	5000
+2534630042	Tanjika Tabassum Anha	42	5000
+2532313042	Noshin Tabassum Raisa	3042	5000
+2532044642	Md Zulgar Nain	4642	5000
+2532609642	Muhammad Raihan Ul Haque	9642	5000
+2532809642	Tahia Mahzabin	9642	5000
+2532871042	Omar	1042	5000
+2531649042	Adnan Sami Amob	9042	5000
+2533492042	Monaorul Islam	2042	5000
+2532746042	Sumaiya Karim Ilma	6042	5000
+2021186642	Shiekh Muhammad Wali Ullah	6642	10000
