@@ -20,7 +20,7 @@ int main()
 
         while(success > 0)
         {
-            int offerindex = (rand() % 2) + 1;
+            int offerindex = (rand() % 3) + 1;
             int op = options();
 
             switch(op)

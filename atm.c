@@ -28,25 +28,38 @@ int exitop()
         }
     }
 }
-long long checknum(char *prompt)
+long long checknum(char prompt[])
 {
-    int success = 0;
-    long long value;
-    char term;
+     int success = 0;
+     long long value;
+     char term;
+     char buffer[100];
 
-    while (1)
-    {
-        printf("%s", prompt);
-        success = scanf("%lld%c", &value, &term);
-        if ( success != 2 || success == 0 || term != '\n')
+     while (1)
         {
-            printf("Invalid input. Please try again.\n");
-            while (getchar() != '\n');
-            success = 0;
-            continue;
+            printf("%s", prompt);
+
+            if(fgets(buffer, sizeof(buffer), stdin) == NULL)
+            {
+                printf("Invalid input. Please try again\n");
+                continue;
+            }
+
+            if(buffer[0] == '\n')
+            {
+                printf("Invalid input. Please try again\n");
+                continue;
+            }
+            success = sscanf(buffer, "%lld%c", &value, &term);
+
+            if ( success != 2 || success == 0 || term != '\n')
+            {
+                printf("Invalid input. Please try again.\n");
+                success = 0;
+                continue;
+            }
+            return value;
         }
-        return value;
-    }
 }
 void login(long long *id, long *pin, int *index, int *success)
 {
@@ -54,53 +67,53 @@ void login(long long *id, long *pin, int *index, int *success)
     long enteredpin;
     int foundindex = -1;
 
-    while(1)
+    while (1)
     {
         enteredid = checknum("Enter your Account no.: ");
 
-        for(int i = 0; i < total; i++)
+        for (int i = 0; i < total; i++)
         {
-            if(accounts[i].id == enteredid)
+            if (accounts[i].id == enteredid)
             {
                 foundindex = i;
                 break;
             }
         }
-        if(foundindex == -1)
+
+        if (foundindex == -1)
         {
             printf("Invalid ID. Try again.\n");
             continue;
         }
         break;
     }
+
     int attempts = 3;
-    while(1)
+
+    while (attempts > 0)
     {
         enteredpin = checknum("Enter your 4-digit pin: ");
 
-        if(accounts[foundindex].pin == enteredpin)
+        if (accounts[foundindex].pin == enteredpin)
         {
             printf("\nWelcome! %s!", accounts[foundindex].name);
-            break;
-        }
-        else if(attempts == 0)
-        {
-            printf("\nToo many unsuccessful attempts. Try again later.\n");
-            exit(1);
+            *success = 1;
+            *id = enteredid;
+            *pin = enteredpin;
+            *index = foundindex;
+            return;
         }
         else
         {
-            if(attempts == 1)
-                printf("Incorrect Pin. You have %d attempt remaining. Try again.\n", attempts--);
-            else
-                printf("Incorrect Pin. You have %d attempts remaining. Try again.\n", attempts--);
-                continue;
+            attempts--;
+            if (attempts == 0)
+            {
+                printf("\nToo many unsuccessful attempts. Try again later.\n");
+                exit(1);
+            }
+            printf("Incorrect Pin. You have %d attempts remaining.\n", attempts);
         }
     }
-    *success = attempts;
-    *id = enteredid;
-    *pin = enteredpin;
-    *index = foundindex;
 }
 void transact(int index, int amount, char mode)
 {
@@ -111,7 +124,7 @@ void transact(int index, int amount, char mode)
     }
 
     time_t t = time(NULL);
-    struct tm tm_ptr = *localtime(&t);
+    struct tm time = *localtime(&t);
 
     char action[100];
     char sign;
@@ -143,7 +156,7 @@ void transact(int index, int amount, char mode)
             sign = '+';
             break;
     }
-    fprintf(fp, "%lld|%02d:%02d|%s|%d%c\n", accounts[index].id, tm_ptr.tm_hour, tm_ptr.tm_min, action, amount, sign);
+    fprintf(fp, "%lld|%02d:%02d|%s|%d%c\n", accounts[index].id, time.tm_hour, time.tm_min, action, amount, sign);
     fclose(fp);
 }
 void offers(int op)
@@ -160,7 +173,6 @@ void offers(int op)
             printf("\nTransfer 5000+ and get 50 taka cashback!");
     }
 }
-
 int options()
 {
     while(1)

@@ -4,7 +4,7 @@
 
 void atmheader();
 int exitop();
-long long checknum(char *prompt);
+long long checknum(char prompt[]);
 
 void login(long long *id, long *pin, int *index, int *success);
 void transact(int index, int amount, char mode);

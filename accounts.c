@@ -16,9 +16,7 @@ void load()
 
     for(int i = 0; i < total; i++)
     {
-        fscanf(fp, "%lld\t%[^\t]\t%ld\t%ld",
-                &accounts[i].id, accounts[i].name,
-                &accounts[i].pin, &accounts[i].balance);
+        fscanf(fp, "%lld\t%[^\t]\t%ld\t%ld", &accounts[i].id, accounts[i].name, &accounts[i].pin, &accounts[i].balance);
     }
     fclose(fp);
 }
@@ -34,9 +32,7 @@ void save()
 
     for(int i = 0; i < total; i++)
     {
-        fprintf(fp, "%lld\t%s\t%ld\t%ld\n",
-                accounts[i].id, accounts[i].name,
-                accounts[i].pin, accounts[i].balance);
+        fprintf(fp, "%lld\t%s\t%ld\t%ld\n", accounts[i].id, accounts[i].name, accounts[i].pin, accounts[i].balance);
     }
     fclose(fp);
 }

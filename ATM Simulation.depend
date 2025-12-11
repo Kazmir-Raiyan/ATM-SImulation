@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1765443808 source:c:\users\kazmi\desktop\project\atm simulation\main.c
+1765459038 source:c:\users\kazmi\desktop\project\atm simulation\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -9,10 +9,10 @@
 1765436073 c:\users\kazmi\desktop\project\atm simulation\students.h
 	<stdio.h>
 
-1765444194 c:\users\kazmi\desktop\project\atm simulation\atm.h
+1765459196 c:\users\kazmi\desktop\project\atm simulation\atm.h
 	"accounts.h"
 
-1765444154 source:c:\users\kazmi\desktop\project\atm simulation\atm.c
+1765449280 source:c:\users\kazmi\desktop\project\atm simulation\atm.c
 	"atm.h"
 	<stdio.h>
 	<stdlib.h>
@@ -24,6 +24,11 @@
 	<stdlib.h>
 	<string.h>
 
-1765443662 c:\users\kazmi\desktop\project\atm simulation\accounts.h
+1765459291 c:\users\kazmi\desktop\project\atm simulation\accounts.h
 	<stdio.h>
+
+1765444203 source:c:\users\kazmi\desktop\project\atm simulation\accounts.c
+	"accounts.h"
+	<stdlib.h>
+	<string.h>
 
